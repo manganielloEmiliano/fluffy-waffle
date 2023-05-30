@@ -10,10 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
     private EditText nombre,pin,contrasena;
-    private Button usuario,admin;
+    private RadioButton usuario,admin;
 
 
     @Override
@@ -29,45 +30,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void ingresar(View view){
-        String n= new String("pepe");
-        int p =123;
-        String c=new String("perro");
+    public void ingresar(View view) {
+        String n = new String("pepe");
+        int p = 123;
+        String c = new String("perro");
 
-        String nom=nombre.getText().toString();
-        String pi=pin.getText().toString();
-        String con=contrasena.getText().toString();
+        String nom = nombre.getText().toString();
+        String pi = pin.getText().toString();
+        String con = contrasena.getText().toString();
 
-        int pp=Integer.parseInt(pi);
+        int pp = Integer.parseInt(pi);
 
 
-        if((n.equals(nom)) && (con.equals(c)) && (p==pp)){
+        if ((n.equals(nom)) && (con.equals(c)) && (p == pp)) {
 
-                    usuario.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                            intent.putExtra("condicion", usuario.getText().toString());
-                            startActivity(intent);
 
-                        }
-                    });
-                    admin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                            intent.putExtra("condicion", admin.getText().toString());
-                            startActivity(intent);
+            if (usuario.isChecked()) {
 
-                        }
-                    });
-                }else {
-            Toast.makeText(this, "no logueado", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("condicion", usuario.getText().toString());
+                startActivity(intent);
+
+            } else if (admin.isChecked()) {
+
+
+
+                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                    intent.putExtra("condicion", admin.getText().toString());
+                    startActivity(intent);
+
+                }
+
+
+            } else {
+                Toast.makeText(this, "no logueado", Toast.LENGTH_LONG).show();
             }
         }
 
 
-
-
-
-}
+    }
