@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextNumber;
@@ -32,23 +33,29 @@ public class MainActivity extends AppCompatActivity {
 
         String valor1=editTextNumber.getText().toString();
         int val=Integer.parseInt(valor1);
-        if(val<=6){
-            textView.setText("es acida");
+        if(val>=0&&val<=14){
+            if(val<=6){
+                textView.setText("es acida");
 
-        } else if (val>=8) {
-            textView.setText("es basica");
+            } else if (val>=8) {
+                textView.setText("es basica");
 
 
-        }else{
-            textView.setText("es neutra");
+            }else{
+                textView.setText("es neutra");
 
+            }
+            editor.commit();
+
+
+
+
+    }else{
+            Toast.makeText(this,"el numero debe estar entre 0 y 14",Toast.LENGTH_LONG).show();
         }
-        editor.commit();
-
-
-
-
     }
+
+
     public void fin(View view){
         finish();
     }
